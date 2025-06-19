@@ -20,14 +20,6 @@ Puedes instalar las dependencias necesarias utilizando el siguiente comando:
 pip install tensorflow numpy matplotlib scikit-learn
 ```
 
-## Estructura del Proyecto
-
-- `README.md`: Este archivo.
-- `gan_model.py`: Script principal que contiene la implementación del modelo GAN.
-- `training_checkpoints/`: Directorio para guardar los checkpoints durante el entrenamiento.
-- `generator_model_final.h5`: Modelo del generador entrenado.
-- `discriminator_model_final.h5`: Modelo del discriminador entrenado.
-
 ## Configuración
 
 El proyecto utiliza una clase `Config` para definir los hiperparámetros del modelo:
@@ -36,7 +28,7 @@ El proyecto utiliza una clase `Config` para definir los hiperparámetros del mod
 class Config:
     BUFFER_SIZE = 60000
     BATCH_SIZE = 128
-    EPOCHS = 200
+    EPOCHS = 120
     NOISE_DIM = 100
     NUM_EXAMPLES_TO_GENERATE = 16
     LEARNING_RATE = 2e-4
@@ -48,7 +40,7 @@ class Config:
 
 El entrenamiento del modelo se realiza en dos fases:
 
-1. **Entrenamiento inicial hasta la época 200**: Se entrena el modelo desde cero hasta la época 200.
+1. **Entrenamiento inicial hasta la época 200**: Se entrena el modelo desde cero hasta la época 200 pero se detuvo por que se termino el tiempo de GPU brindada por Google Colab.
 2. **Entrenamiento adicional hasta la época 120**: Se continúa el entrenamiento desde el último checkpoint guardado hasta la época 120.
 
 ### Función de Entrenamiento
@@ -102,12 +94,6 @@ generate_and_evaluate_images(generator, num_images=16)
 | Precision | 0.6018 |
 | Recall | 0.6018 |
 | F1 Score | 0.6018 |
-
-### Imágenes Generadas
-
-El modelo genera imágenes de dígitos escritos a mano similares a las del conjunto de datos MNIST.
-
-![Imágenes generadas por el GAN](image_at_epoch_120.png)
 
 ## Conclusión
 
